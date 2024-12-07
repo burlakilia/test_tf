@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="./config.js"></script>
+    </head>
+    <body>
+        <div class="js-time"></div>
+        <script>
+            (function () {
+                const render = (data) => {
+                    document.body.querySelector('.js-time').innerText = data.datetime;
+
+                    setTimeout(update, 10000);
+                }
+
+                function update() {
+                    fetch(`${window.SERVER_HOST}/get_config`).then(res => res.json()).then(data => render(data))
+                }
+
+                update();
+            })()
+        </script>
+    </body>
+</html>
